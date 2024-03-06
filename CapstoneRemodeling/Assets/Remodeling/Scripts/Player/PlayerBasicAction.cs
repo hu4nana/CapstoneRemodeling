@@ -5,9 +5,8 @@ using UnityEngine.UIElements;
 
 public interface IPlayerBasicAction
 {
-    public void Move(float moveSpeed, Rigidbody rigid,GameObject player,Animator ani)
+    public void Move(float moveSpeed, Rigidbody rigid, GameObject player, Animator ani)
     {
-        
         if (Input.GetAxis("Horizontal") != 0)
         {
             float xInput = Input.GetAxis("Horizontal");
@@ -17,9 +16,9 @@ public interface IPlayerBasicAction
 
             ani.SetBool("isRun", true);
 
-            if(xDir!=0)
+            if (xDir != 0)
             {
-                player.transform.rotation = Quaternion.Slerp(player.transform.rotation, 
+                player.transform.rotation = Quaternion.Slerp(player.transform.rotation,
                     Quaternion.LookRotation(Vector3.right * xDir), Time.deltaTime * 24);
             }
         }
@@ -28,17 +27,24 @@ public interface IPlayerBasicAction
             ani.SetBool("isRun", false);
         }
     }
-    public void Attack(float Dmage, Rigidbody rigid,GameObject player, Animator ani)
+
+    public void Jump(float upVelocity, Rigidbody rigid, GameObject player, Animator ani)
     {
-        if(Input.GetKey(KeyCode.X))
+
+    }
+
+    public void Attack(float Dmage, Rigidbody rigid, GameObject player, Animator ani)
+    {
+        if (Input.GetKey(KeyCode.X))
         {
-            ani.SetBool("isAttack",true);
+            ani.SetBool("isAttack", true);
         }
         else
         {
             ani.SetBool("isAttack", false);
         }
     }
+
     public void Crouch(Animator ani)
     {
         if (Input.GetKey(KeyCode.DownArrow))
@@ -47,5 +53,11 @@ public interface IPlayerBasicAction
         }
         else
             ani.SetBool("isCrouch", false);
+    }
+
+    // 투사체 발사
+    public void Shoot(GameObject instancePoint, GameObject instanceObject, Rigidbody rigid)
+    {
+
     }
 }

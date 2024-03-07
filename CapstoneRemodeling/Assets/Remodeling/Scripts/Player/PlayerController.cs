@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IPlayerBasicAction
     Rigidbody rigid;
     Animator ani;
 
+    public GameObject Gun;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +38,10 @@ public class PlayerController : MonoBehaviour, IPlayerBasicAction
     void Crouch()
     {
         GetComponent<IPlayerBasicAction>().Crouch(ani);
+    }
+
+    void Shoot()
+    {
+        Gun.GetComponent<MP_2158>().Gun_Shoot_Bullet(transform);
     }
 }

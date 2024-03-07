@@ -11,8 +11,10 @@ public interface IPlayerBasicAction
         {
             float xInput = Input.GetAxis("Horizontal");
             float xDir = xInput;
-
-            rigid.velocity = new Vector3(xDir * moveSpeed, rigid.velocity.y, 0);
+            if (ani.GetBool("isCrouch"))
+                rigid.velocity = new Vector3(xDir * moveSpeed/2, rigid.velocity.y, 0);
+            else
+                rigid.velocity = new Vector3(xDir * moveSpeed, rigid.velocity.y, 0);
 
             ani.SetBool("isRun", true);
 
@@ -24,6 +26,9 @@ public interface IPlayerBasicAction
         }
         else
         {
+            Vector3 targetVelocity = new Vector3(0, rigid.velocity.y, 0);
+            rigid.velocity = Vector3.SmoothDamp(rigid.velocity, 
+                targetVelocity, ref targetVelocity, 0.012f);
             ani.SetBool("isRun", false);
         }
     }
@@ -53,11 +58,5 @@ public interface IPlayerBasicAction
         }
         else
             ani.SetBool("isCrouch", false);
-    }
-
-    // 투사체 발사
-    public void Shoot(GameObject instancePoint, GameObject instanceObject, Rigidbody rigid)
-    {
-
     }
 }

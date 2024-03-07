@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MP_2158 : MonoBehaviour
 {
@@ -26,17 +27,28 @@ public class MP_2158 : MonoBehaviour
         //Gun_Shoot_Bullet();
     }
 
-    public void Gun_Shoot_Bullet()
+    public void Gun_Shoot_Bullet(Transform a)
     {
+        float yRotation = 0;
+        if(a.rotation.y > 0)
+        {
+            yRotation = 90;
+        }
+        else
+        {
+            yRotation = -90;
+        }
         Instantiate(gunFireEffect, gunFireTransform.position,
-               transform.rotation * gunFireEffect.transform.rotation);
+               Quaternion.Euler(yRotation, 0f, yRotation) * gunFireEffect.transform.rotation);
         Instantiate(gunProjEffect, gunFireTransform.position,
-           transform.rotation * gunProjEffect.transform.rotation);
+            Quaternion.Euler(yRotation, 0f, yRotation) * gunProjEffect.transform.rotation);
+
         //Instantiate(gunHitEffect, gunFireTransform.position,
-        //   transform.rotation * gunHitEffect.transform.rotation);
-        
+        //   Quaternion.Euler(yRotation,0f,yRotation)*gunHitEffect.transform.rotation);
+
         Instantiate(bullet, gunFireTransform.position,
-           transform.rotation);
+            Quaternion.Euler(yRotation,0f,yRotation));
+        Debug.Log(yRotation);
         aud.Play();
         //bul.GetComponent<Rigidbody>().velocity = transform.right * 10;
 

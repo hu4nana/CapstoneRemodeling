@@ -272,7 +272,7 @@ public class Manuka_Gun : MonoBehaviour
         }
         else
         {
-            mp.Gun_Shoot_Bullet();
+            //mp.Gun_Shoot_Bullet();
         }
     }
     public void IsCanInputTrue()

@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour, IPlayerBasicAction
         GetComponent<IPlayerBasicAction>().Crouch(ani);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+
     void Shoot()
     {
         Gun.GetComponent<MP_2158>().Gun_Shoot_Bullet(transform);

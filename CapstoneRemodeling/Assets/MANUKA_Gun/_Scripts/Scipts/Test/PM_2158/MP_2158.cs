@@ -48,7 +48,6 @@ public class MP_2158 : MonoBehaviour
 
         Instantiate(bullet, gunFireTransform.position,
             Quaternion.Euler(yRotation,0f,yRotation));
-        Debug.Log(yRotation);
         aud.Play();
         //bul.GetComponent<Rigidbody>().velocity = transform.right * 10;
 

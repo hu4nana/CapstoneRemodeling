@@ -5,23 +5,40 @@ using UnityEngine;
 
 public interface IEnemyBasicAction
 {
-    // 한 방향으로만 이동
+    // 한 방향으로만 이동 ( 굼바스럽게 )
     public void OneDirectionMove(float moveSpeed,Rigidbody rigid,GameObject own,LayerMask collisionLayer)
     {
-        int curDir = -1;
-        int xDir = curDir;
-        float rotation = 90;
         RaycastHit hit;
-        if(Physics.Raycast(own.transform.position,Vector3.left*100,out hit, collisionLayer))
+        if (Physics.Raycast(own.transform.position, 
+            Vector3.right* (own.transform.rotation.y / Mathf.Abs(own.transform.rotation.y))
+            , out hit, own.transform.localScale.x / 2))
         {
-            Debug.Log(own.gameObject.name + "이 " + collisionLayer + "와 충돌하였습니다.");
-            xDir *= -1;
+            if (hit.collider.gameObject.layer == 6)
+            {
+                rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+                own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
+                       Quaternion.LookRotation(Vector3.right *
+                           -(own.transform.rotation.y / Mathf.Abs(own.transform.rotation.y)))
+                       , Time.deltaTime * 24);
+            }
         }
-        rigid.velocity = new Vector3(xDir * moveSpeed, rigid.velocity.y, 0);
-        Debug.Log("전진");
-        
-        own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
-    Quaternion.LookRotation(Vector3.right * xDir), Time.deltaTime * 24);
+        else
+        {
+            if (0 <= own.transform.rotation.y && own.transform.rotation.y < 90)
+            {
+                own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
+                           Quaternion.LookRotation(Vector3.right), Time.deltaTime * 24);
+                rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+            }
+            if (0 >= own.transform.rotation.y && own.transform.rotation.y > -90)
+            {
+                own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
+                           Quaternion.LookRotation(Vector3.left), Time.deltaTime * 24);
+                rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+            }
+        }
+        rigid.velocity=new Vector3(moveSpeed*(own.transform.rotation.y/ Mathf.Abs(own.transform.rotation.y))
+            , rigid.velocity.y, 0);    
     }
 
 
@@ -53,6 +70,16 @@ public interface IEnemyBasicAction
 
     // 투사체 생성
     public void Shoot()
+    {
+
+    }
+
+    // 플레이어에게 계속 돌진 feat 관성
+    public void InertiaChargeAttack()
+    {
+
+    }
+    public void InertiaMove()
     {
 
     }

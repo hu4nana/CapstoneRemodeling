@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour,
         Move();
         Attack();
         Crouch();
-        Hook();
+        //Hook();
     }
     void Move()
     {

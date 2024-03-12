@@ -8,37 +8,85 @@ public class TestEnemy : MonoBehaviour, IEnemyBasicAction
 
     Rigidbody rigid;
     GameObject target;
+
+    [SerializeField]
+    GameObject bullet;
+
+    float bulletTimer = 2;
+    float bulletTime;
+
+    int bulletCount = 8;
+    int curCount = 0;
     // Start is called before the first frame update
     void Start()
     {
         rigid= GetComponent<Rigidbody>();
+        bulletTime = bulletTimer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position,
-            Vector3.right * (transform.rotation.y / Mathf.Abs(transform.rotation.y))
-            , out hit, 5))
-        {
-            if (hit.collider.gameObject.layer == 10)
-            {
-                target = hit.collider.gameObject;
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position,
+        //    Vector3.right * (transform.rotation.y / Mathf.Abs(transform.rotation.y))
+        //    , out hit, 5))
+        //{
+        //    if (hit.collider.gameObject.layer == 10)
+        //    {
+        //        target = hit.collider.gameObject;
 
-            }
-            if (hit.collider.gameObject.layer != 10)
-            {
-                target = null;
-            }
-        }
+        //    }
+        //    if (hit.collider.gameObject.layer != 10)
+        //    {
+        //        target = null;
+        //    }
+        //}
 
-        GetComponent<IEnemyBasicAction>().Charge(target, gameObject, rigid, 3);
+        //GetComponent<IEnemyBasicAction>().Charge(target, gameObject, rigid, 3);
+
+
+        /*Case1*/
+        //InstinateBullet();
         //OneDirectionMove();
+        /*Case1*/
+
+
         //ChargeToTarget();
+
+
+        /*Case2*/
+        //ChargeToTargetFromAir();
+        /*Case2*/
     }
 
-    // One Direction Move_LIke Goomba
+    void InstinateBullet()
+    {
+        bulletTime -= Time.deltaTime;
+        if (bulletTime < 0)
+        {
+            GetComponent<IEnemyBasicAction>().Instinate8DirectionBullet(rigid, gameObject, bullet);
+            bulletTime = bulletTimer;
+        }
+        //if (bulletTime < 0)
+        //{
+        //    Debug.Log(curCount);
+        //    Debug.Log(bulletCount);
+        //    float angle = curCount * Mathf.Deg2Rad;
+        //    GetComponent<IEnemyBasicAction>().InstinateBullet(rigid, gameObject, bullet, angle);
+        //    bulletTime = bulletTimer;
+        //}
+        //if (bulletTime == bulletTimer)
+        //{
+        //    curCount += 1;
+        //}
+        //if (curCount >= bulletCount)
+        //{
+        //    curCount = 0;
+        //}
+
+
+    }
     void OneDirectionMove()
     {
         GetComponent<IEnemyBasicAction>().OneDirectionMove(3,rigid,gameObject,0);
@@ -46,5 +94,10 @@ public class TestEnemy : MonoBehaviour, IEnemyBasicAction
     void ChargeToTarget()
     {
         GetComponent<IEnemyBasicAction>().ChargeToTarget(1,gameObject, rigid, 6);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GetComponent<IEnemyBasicAction>().ChargeToTargetFromAir(1, gameObject, rigid, other);
     }
 }

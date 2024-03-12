@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public interface IEnemyBasicAction
 {
@@ -11,7 +13,7 @@ public interface IEnemyBasicAction
         RaycastHit hit;
         if (Physics.Raycast(own.transform.position, 
             Vector3.right* (own.transform.rotation.y / Mathf.Abs(own.transform.rotation.y))
-            , out hit, own.transform.localScale.x / 2))
+            , out hit, own.transform.localScale.z+own.transform.localScale.z / 2))
         {
             if (hit.collider.gameObject.layer == 6)
             {
@@ -70,9 +72,27 @@ public interface IEnemyBasicAction
     }
    
     
-    // 전방에 투사체 발사
-    public void Shoot()
+    // 투사체 발사
+    public void Instinate8DirectionBullet(Rigidbody rigid,GameObject own,GameObject bullet)
     {
+        for (int i = 0; i < 360; i += 45)
+        {
+            // 각도를 라디안으로 변환합니다.
+            float angle = i * Mathf.Deg2Rad;
+
+            // 방향 벡터를 계산합니다.
+            Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+
+            // 총알을 생성하고 방향을 설정합니다.
+            GameObject obj = Object.Instantiate(bullet, own.transform.position, Quaternion.identity);
+            obj.GetComponent<Rigidbody>().velocity = direction * 5;
+        }
+        // // 방향 벡터를 계산합니다.
+        //Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+
+        // // 총알을 생성하고 방향을 설정합니다.
+        //GameObject obj = Object.Instantiate(bullet, own.transform.position, Quaternion.identity);
+        //obj.GetComponent<Rigidbody>().velocity = direction * 5;
 
     }
 
@@ -88,7 +108,6 @@ public interface IEnemyBasicAction
         {
             if (hit.collider.gameObject.layer == 10)
             {
-                
                 if (rigid.velocity.x >= maxSpeed)
                 {
                     rigid.velocity = new Vector3(maxSpeed, rigid.velocity.y, 0);
@@ -104,8 +123,19 @@ public interface IEnemyBasicAction
                 rigid.velocity=new Vector3(0,rigid.velocity.y, 0);
             }
         }
-    }    
+    }
 
+
+    // Collider 인식 시 해당 좌표로 이동
+    public void ChargeToTargetFromAir(float startSpeed, GameObject own, Rigidbody rigid, Collider col)
+    {
+        if(col.gameObject.layer == 10)
+        {
+            own.transform.LookAt(col.gameObject.transform.position);
+            rigid.velocity=col.gameObject.transform.position - own.gameObject.transform.position;
+        }
+        
+    }
     // 범위 내의 Target한테 거리두기
     public void KeepDistanceToTarget(float distance,GameObject own,Rigidbody rigid)
     {

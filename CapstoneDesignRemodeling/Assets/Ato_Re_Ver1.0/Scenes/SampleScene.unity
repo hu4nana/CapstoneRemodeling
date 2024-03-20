@@ -616,6 +616,26 @@ MonoBehaviour:
   speed: 5
   maxFallSpeed: -20
   Gun: {fileID: 898855412}
+--- !u!114 &416435684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416435676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ade64c8e5cf0994fb3d1bbb66143aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _max_playerHp: 5
+  _playerHp: 5
+  _damage: 0
+  _isMonster: 0
+  _isAlive: 1
+  _isAttackObject: 0
+  _M_Type: 0
+  _A_Type: 1
 --- !u!4 &681973174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1790108485024269485, guid: c0e42452064d4d5458d69a56ee7fdef8,
@@ -1402,6 +1422,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3833285174642460675, guid: 935d11e73265171418eefc69a4950687,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4157697276899202785, guid: 935d11e73265171418eefc69a4950687,
         type: 3}
       propertyPath: m_Layer
@@ -1527,6 +1552,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8624892552522675131, guid: 935d11e73265171418eefc69a4950687,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8630278925728057006, guid: 935d11e73265171418eefc69a4950687,
         type: 3}
       propertyPath: m_Name
@@ -1545,8 +1575,65 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8630278925728057006, guid: 935d11e73265171418eefc69a4950687,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1165815378}
+    - targetCorrespondingSourceObject: {fileID: 8624892552522675131, guid: 935d11e73265171418eefc69a4950687,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1165815377}
   m_SourcePrefab: {fileID: 100100000, guid: 935d11e73265171418eefc69a4950687, type: 3}
+--- !u!1 &1165815375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8630278925728057006, guid: 935d11e73265171418eefc69a4950687,
+    type: 3}
+  m_PrefabInstance: {fileID: 1165815374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1165815376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8624892552522675131, guid: 935d11e73265171418eefc69a4950687,
+    type: 3}
+  m_PrefabInstance: {fileID: 1165815374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1165815377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165815376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4fd5b2884c7784db38ce258f0c312c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _isMonster: 0
+  _isAttackObject: 1
+  _M_Type: 0
+  _A_Type: 0
+--- !u!114 &1165815378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165815375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8341dc8e99ae5cc4abcf978851e1a976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _max_monsterHp: 100
+  _monsterHp: 100
+  _damage: 0
+  _isMonster: 1
+  _isAlive: 1
+  _isAttackObject: 0
+  _M_Type: 0
+  _A_Type: 0
 --- !u!1 &1191015620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,6 +5349,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1530211782}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6185782208751654227, guid: c0e42452064d4d5458d69a56ee7fdef8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 416435684}
     - targetCorrespondingSourceObject: {fileID: 6185782208751654227, guid: c0e42452064d4d5458d69a56ee7fdef8,
         type: 3}
       insertIndex: -1

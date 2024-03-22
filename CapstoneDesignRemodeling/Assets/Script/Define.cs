@@ -32,6 +32,12 @@ public class Define
         Armor,
         Energy,
     }
+    public enum MonsterMoveType
+    {
+        Ground,
+        Fly,
+    }
+
     public enum AttackType
     {
         Normal,

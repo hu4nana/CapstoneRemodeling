@@ -83,6 +83,7 @@ public class Player_State_Manage : MonoBehaviour, IDamageable
 
         if (isMonster)//몬스터일 경우 데미지 공식 적용
         {
+
         }
         else//플레이어일 경우 데미지 공식 미 적용
         {

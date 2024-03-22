@@ -317,11 +317,11 @@ public class Manuka_Gun : MonoBehaviour
             //Debug.Log("플레이어가 벽에 닿아있습니다.");
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 9)
-        {
-            g_curHP -= other.GetComponent<MonsterAttack>().Damage;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.layer == 9)
+    //    {
+    //        g_curHP -= other.GetComponent<MonsterAttack>().Damage;
+    //    }
+    //}
 }

@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class Monster_State_Manage : MonoBehaviour, IDamageable
 {
+    private Renderer monsterRenderer;
+    //private Renderer monster_Original_Renderer;
+    private Material defaultMaterial;  // 몬스터의 기본 머티리얼
+
+    [SerializeField]
+    protected Define.MonsterMoveType _M_M_Type;
+
+    [SerializeField]
+    ParticleSystem GroundType_Vfx;
+
+    [SerializeField]
+    ParticleSystem FlyType_Vfx;
+
+
+    
+
+    public Define.MonsterMoveType M_M_Type { get { return _M_M_Type; } set { _M_M_Type = value; } }
+
+
     [SerializeField]
     protected int _max_monsterHp;
     public int M_Hp { get { return _max_monsterHp; } set { _max_monsterHp = value; } }
@@ -18,7 +37,7 @@ public class Monster_State_Manage : MonoBehaviour, IDamageable
     public int Damage { get { return _damage; } set { _damage = value; } }
 
     [SerializeField]
-    protected bool _isMonster;
+    protected bool _isMonster; // 나 자신이 몬스터인가?
     public bool IsMonster { get { return _isMonster; } set { _isMonster = true; } }
 
 
@@ -49,11 +68,17 @@ public class Monster_State_Manage : MonoBehaviour, IDamageable
     void Init()
     {
         IsAlive = true;
-        M_Hp = 2500;
+        //M_Hp = 2500;
         Hp = M_Hp;
         IsMonster = true;
+        monsterRenderer = GetComponentInChildren<Renderer>();
+        defaultMaterial = monsterRenderer.material;
+        //defaultMaterial = GetComponentInChildren<Material>();
     }
-
+    void Start()
+    {
+        Init();
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -83,12 +108,13 @@ public class Monster_State_Manage : MonoBehaviour, IDamageable
 
         if (isMonster)//몬스터일 경우 데미지 공식 적용
         {
+            ShowHitEffect();
             switch (M_Type)
             {
                 case Define.MonsterType.Normal:
                     monster_hp -= Damage;
                     Hp = monster_hp;
-                    Debug.Log($" 현재 객체 노말공격을 맞음  남은 체력 : {Hp}");
+                    Debug.Log($" 현재 객체 노말 공격을 맞음  남은 체력 : {Hp}");
                     break;
                 case Define.MonsterType.Armor:
                     if (A_Type == Define.AttackType.Normal)
@@ -122,8 +148,60 @@ public class Monster_State_Manage : MonoBehaviour, IDamageable
         if (Hp <= 0)
         {
             IsAlive = false;
+            Dead();
         }
         //Debug.Log("데미지를받았다");
     }
+
+    public void ShowHitEffect()
+    {
+        StartCoroutine(HitEffectCoroutine());
+    }
+    IEnumerator HitEffectCoroutine()
+    {
+        //defaultMaterial.color = monsterRenderer.material.color;
+
+
+        // 빨간색으로 변경
+        monsterRenderer.material.color = Color.red;
+
+        // 잠시 대기
+        yield return new WaitForSeconds(0.1f);  // 예시로 0.5초 동안 빨간색으로 유지
+
+        // 기본 색상으로 변경
+        monsterRenderer.material.color = defaultMaterial.color;
+    }
+
+    public void Dead()
+    {
+        if (IsAlive)
+        {
+            return;
+        }
+        else
+        {
+            switch (M_M_Type)
+            {
+                case Define.MonsterMoveType.Ground:
+                    if (GroundType_Vfx == null) { return; }
+                    GroundType_Vfx.Play();
+                    if (GroundType_Vfx.isStopped)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    break;
+                case Define.MonsterMoveType.Fly:
+                    if (FlyType_Vfx == null) { return; }
+                    FlyType_Vfx.Play();
+                    if (FlyType_Vfx.isStopped)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    break;
+            }
+
+        }
+    }
+
 
 }

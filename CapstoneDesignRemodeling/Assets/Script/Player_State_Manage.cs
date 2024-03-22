@@ -87,13 +87,28 @@ public class Player_State_Manage : MonoBehaviour, IDamageable
         else//플레이어일 경우 데미지 공식 미 적용
         {
             Hp -= 1;
-            //Debug.Log($"플레이어가 데미지를 입었음 남은체력 {Hp}");
+            Change_Player_Layer();
+            Debug.Log($"플레이어가 데미지를 입었음 남은체력 {Hp}");
         }
         if (Hp <= 0)
         {
             IsAlive = false;
         }
         //Debug.Log("데미지를받았다");
+    }
+
+
+    void Change_Player_Layer()
+    {
+        Debug.Log("플레이어의 레이어를 변경합니다");
+        this.gameObject.layer = LayerMask.NameToLayer("Invicible");
+        Invoke("Restoration_Player_Layer", 2.0f);
+    }
+
+    void Restoration_Player_Layer()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Player"); ;
+        Debug.Log("플레이어의 레이어를 원상복구합니다.");
     }
 
 }

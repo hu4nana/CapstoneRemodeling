@@ -38,8 +38,8 @@ public class G_Bullet : MonoBehaviour
             rigid.velocity = Vector3.zero;
             if (count == 0)
             {
-                Instantiate(hitEffect, transform);
-                count++;
+                //Instantiate(hitEffect, transform);
+                //count++;
             }
             else
             {

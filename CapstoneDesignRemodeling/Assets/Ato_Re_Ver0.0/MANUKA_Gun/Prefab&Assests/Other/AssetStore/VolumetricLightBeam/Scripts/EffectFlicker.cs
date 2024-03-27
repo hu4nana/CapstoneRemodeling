@@ -5,6 +5,7 @@ using UnityEngine;
 namespace VLB
 {
     [HelpURL(Consts.Help.UrlEffectFlicker)]
+    [AddComponentMenu(Consts.Help.AddComponentMenuEffectFlicker)]
     public class EffectFlicker : EffectAbstractBase
     {
         public new const string ClassName = "EffectFlicker";

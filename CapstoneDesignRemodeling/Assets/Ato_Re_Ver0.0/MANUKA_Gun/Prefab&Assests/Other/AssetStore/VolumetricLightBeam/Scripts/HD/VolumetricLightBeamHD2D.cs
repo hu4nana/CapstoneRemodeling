@@ -8,6 +8,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [SelectionBase]
     [HelpURL(Consts.Help.HD.UrlBeam)]
+    [AddComponentMenu(Consts.Help.HD.AddComponentMenuBeam2D)]
     public partial class VolumetricLightBeamHD2D : VolumetricLightBeamHD
     {
         /// <summary>

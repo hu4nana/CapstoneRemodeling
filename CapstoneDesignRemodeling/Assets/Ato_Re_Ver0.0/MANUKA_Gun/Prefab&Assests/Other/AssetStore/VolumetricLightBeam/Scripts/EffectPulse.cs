@@ -5,6 +5,7 @@ using UnityEngine;
 namespace VLB
 {
     [HelpURL(Consts.Help.UrlEffectPulse)]
+    [AddComponentMenu(Consts.Help.AddComponentMenuEffectPulse)]
     public class EffectPulse : EffectAbstractBase
     {
         public new const string ClassName = "EffectPulse";

@@ -58,7 +58,15 @@ namespace VLB
 
             if (FoldableHeader.Begin(this, EditorStrings.DustParticles.HeaderCulling))
             {
-                EditorGUILayout.PropertyField(cullingEnabled, EditorStrings.DustParticles.CullingEnabled);
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    EditorGUILayout.PropertyField(cullingEnabled, EditorStrings.DustParticles.CullingEnabled);
+                    if (AreParticlesInfosUpdated())
+                    {
+                        EditorGUILayout.LabelField(string.Format("(Camera: '{0}')", Config.Instance.fadeOutCameraName));
+                    }
+                }
+
                 if (cullingEnabled.boolValue)
                     EditorGUILayout.PropertyField(cullingMaxDistance, EditorStrings.DustParticles.CullingMaxDistance);
             }
@@ -74,7 +82,7 @@ namespace VLB
                     if (AreParticlesInfosUpdated()) infos += particles.particlesCurrentCount;
                     else infos += "(playtime only)";
                     if (particles.isCulled)
-                        infos += string.Format(" (culled by '{0}')", particles.mainCamera.name);
+                        infos += string.Format(" (culled by '{0}')", Config.Instance.fadeOutCameraName);
                     infos += string.Format("\nMax particles count: {0}", particles.particlesMaxCount);
                     EditorGUILayout.HelpBox(infos, MessageType.Info);
                 }

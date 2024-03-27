@@ -13,6 +13,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [SelectionBase]
     [HelpURL(Consts.Help.HD.UrlBeam)]
+    [AddComponentMenu(Consts.Help.HD.AddComponentMenuBeam3D)]
     public partial class VolumetricLightBeamHD : VolumetricLightBeamAbstractBase
     {
         public new const string ClassName = "VolumetricLightBeamHD";

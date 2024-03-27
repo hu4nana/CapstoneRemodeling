@@ -16,7 +16,7 @@ namespace VLB
 
         void Start()
         {
-            DestroyInvalidOwner(); // Handle copy / paste the LightBeam in Editor
+            DestroyOrphanBeamGeom(); // Handle copy / paste the LightBeam in Editor
         }
 
 
@@ -29,10 +29,20 @@ namespace VLB
             }
         }
 
-        void DestroyInvalidOwner()
+        void DestroyOrphanBeamGeom()
         {
-            if (!GetMaster())
-                DestroyBeamGeometryGameObject(this);
+            var master = GetMaster();
+            if(master)
+            {
+                var beamGeom = master.GetBeamGeometry();
+                if(beamGeom == this)
+                {
+                    // do not destroy me only if I have a master, and this master knows me as its beam geom
+                    return;
+                }
+            }
+
+            DestroyBeamGeometryGameObject(this);
         }
 
         public static void DestroyBeamGeometryGameObject(BeamGeometryAbstractBase beamGeom)
@@ -46,7 +56,7 @@ namespace VLB
         {
             if (!Application.isPlaying)
             {
-                DestroyInvalidOwner();
+                DestroyOrphanBeamGeom();
             }
         }
 

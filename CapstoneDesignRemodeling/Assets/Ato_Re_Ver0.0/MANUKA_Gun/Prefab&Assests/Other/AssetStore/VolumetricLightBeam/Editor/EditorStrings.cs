@@ -104,7 +104,7 @@ namespace VLB
 
             // HELP BOXES
             public const string HelpNoSpotlight = "To bind properties from the Light and the Beam together, this component must be attached to a Light of type 'Spot'";
-            public const string HelpFadeOutNoMainCamera = "Fail to retrieve the main camera specified in the config.";
+            public static string HelpFadeOutNoMainCamera { get { return string.Format("Fail to retrieve the camera with tag '{0}' (specified in VLB Config's 'fadeOutCameraTag') for the FadeOut feature.", VLB.Config.Instance.fadeOutCameraTag); } }
 
             public const string PrefEditInScene = "VLB_BEAM_EDITINSCENE";
 
@@ -175,8 +175,8 @@ namespace VLB
             public static readonly GUIContent Direction = new GUIContent("Direction", "Direction of the particles\n- Random: random direction.\n- Local Space: particles follow the velicity direction in local space (Z is along the beam).\n- World Space: particles follow the velicity direction in world space.");
             public static readonly GUIContent Velocity = new GUIContent("Velocity", "Movement speed of the particles along the chosen direction");
 
-            public static readonly GUIContent CullingEnabled = new GUIContent("Enabled", "Enable particles culling based on the distance to the Main Camera.\nWe highly recommend to enable this feature to keep good runtime performances.");
-            public static readonly GUIContent CullingMaxDistance = new GUIContent("Max Distance", "The particles will not be rendered if they are further than this distance to the Main Camera");
+            public static readonly GUIContent CullingEnabled = new GUIContent("Enabled", "Enable particles culling based on the distance with the 'FadeOut Camera' identified through the VLB Config's 'fadeOutCameraTag' property.\nWe highly recommend to enable this feature to keep good runtime performances.");
+            public static readonly GUIContent CullingMaxDistance = new GUIContent("Max Distance", "The particles will not be rendered if they are further than cullingMaxDistance to the 'FadeOut Camera'.");
 
             public static readonly GUIContent Density = new GUIContent("Density", "Control how many particles are spawned. The higher the density, the more particles are spawned, the higher the performance cost is");
             public static readonly GUIContent SpawnDistanceRange = new GUIContent("Distance Range", "The distance range (from the light source) where the particles are spawned.\n- Min bound: the higher it is, the more the particles are spawned away from the light source.\n- Max bound: the lower it is, the more the particles are gathered near the light source.");
@@ -363,7 +363,7 @@ namespace VLB
 
             public static readonly GUIContent URPDepthCameraScriptableRendererIndex = new GUIContent("Custom renderer index for Depth Camera", "When using URP, specify a custom Renderer index used by the depth cameras for the 'Dynamic Occlusion (Depth Buffer)' and 'HD Shadow' features.\nThe 'Renderer list' is editable in the URP asset.\n\nWe recommend to specify a custom index referencing the URP default 'ForwardRenderer' when you are using a custom renderer that doesn't support writing to depth render texture. This is the case if you encounter errors like:\n- 'RenderTexture.Create failed: colorFormat & depthStencilFormat cannot both be none'\n- 'You can only call cameraColorTarget inside the scope of a ScriptableRenderPass'\n\nSet -1 to disable this feature.");
 
-            public static readonly GUIContent FadeOutCameraTag = new GUIContent("Fade Out Camera Tag", "Tag used to retrieve the camera used to compute the fade out factor on beams");
+            public static readonly GUIContent FadeOutCameraTag = new GUIContent("Fade Out Camera Tag", "Tag used to retrieve the camera used to compute the fade out factor on SD Beams, and the culling of 'VolumetricDustParticles'.");
 
             public static readonly GUIContent SharedMeshSides = new GUIContent("Cone Mesh Sides", "Number of Sides of the cone.\nHigher values make the beam looks more 'round', but require more memory and graphic performance.\nA recommended value for a decent quality while keeping the poly count low is 18.");
             public static readonly GUIContent SharedMeshSegments = new GUIContent("Cone Mesh Segments", "Number of Segments of the cone.\nHigher values give better looking results but require more performance. We recommend at least 3 segments, specially regarding Attenuation and Gradient, otherwise the approximation could become inaccurate.\nThe longer the beam, the more segments we recommend to set.\nA recommended value is 4.");

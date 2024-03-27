@@ -6,6 +6,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [RequireComponent(typeof(VolumetricLightBeamHD))]
     [HelpURL(Consts.Help.HD.UrlShadow)]
+    [AddComponentMenu(Consts.Help.HD.AddComponentMenuShadow)]
     public class VolumetricShadowHD : MonoBehaviour
     {
         public const string ClassName = "VolumetricShadowHD";

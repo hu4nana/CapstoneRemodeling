@@ -5,6 +5,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [RequireComponent(typeof(VolumetricLightBeamAbstractBase))]
     [HelpURL(Consts.Help.UrlTriggerZone)]
+    [AddComponentMenu(Consts.Help.AddComponentMenuTriggerZone)]
     public class TriggerZone : MonoBehaviour
     {
         public const string ClassName = "TriggerZone";

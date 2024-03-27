@@ -10,7 +10,7 @@ namespace VLB_Installer
     [CustomEditor(typeof(Installer))]
     public class InstallerEditor : Editor
     {
-        readonly string CurrentVersion = "2.1.2";
+        readonly string CurrentVersion = "2.1.3";
         readonly string PackageFilename = "VolumetricLightBeam.unitypackage";
         readonly string[] OldPluginPath = new string[]
         {

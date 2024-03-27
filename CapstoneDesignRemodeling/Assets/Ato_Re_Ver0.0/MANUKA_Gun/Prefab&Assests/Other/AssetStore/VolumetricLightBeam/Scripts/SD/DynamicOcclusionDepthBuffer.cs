@@ -5,6 +5,7 @@ namespace VLB
 {
     [ExecuteInEditMode]
     [HelpURL(Consts.Help.SD.UrlDynamicOcclusionDepthBuffer)]
+    [AddComponentMenu(Consts.Help.SD.AddComponentMenuDynamicOcclusionDepthBuffer)]
     public class DynamicOcclusionDepthBuffer : DynamicOcclusionAbstractBase
     {
         public new const string ClassName = "DynamicOcclusionDepthBuffer";

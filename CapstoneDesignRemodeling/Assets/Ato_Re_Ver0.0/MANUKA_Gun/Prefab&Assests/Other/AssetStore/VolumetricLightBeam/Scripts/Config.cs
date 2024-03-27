@@ -229,23 +229,40 @@ namespace VLB
         {
             get
             {
-                if (m_CachedFadeOutCamera == null)
+                if (m_CachedFadeOutCamera == null || !m_CachedFadeOutCamera.isActiveAndEnabled)
                 {
                     ForceUpdateFadeOutCamera();
                 }
 
-                return m_CachedFadeOutCamera;
+
+                return m_CachedFadeOutCamera != null ? m_CachedFadeOutCamera.transform : null;
             }
         }
+
+        public string fadeOutCameraName { get { return m_CachedFadeOutCamera != null ? m_CachedFadeOutCamera.name : "Invalid Camera"; } }
 
         /// <summary>
         /// Call this function if you want to manually change the fadeOutCameraTag property at runtime
         /// </summary>
         public void ForceUpdateFadeOutCamera()
         {
-            var gao = GameObject.FindGameObjectWithTag(fadeOutCameraTag);
-            if (gao)
-                m_CachedFadeOutCamera = gao.transform;
+            var gaos = GameObject.FindGameObjectsWithTag(fadeOutCameraTag);
+            if (gaos != null)
+            {
+                foreach (GameObject gao in gaos)
+                {
+                    if (gao)
+                    {
+                        var cam = gao.GetComponent<Camera>();
+                        if (cam && cam.isActiveAndEnabled) // look for the first active camera with the proper tag
+                        {
+                            m_CachedFadeOutCamera = cam;
+                            return;
+                        }
+                    }
+                }
+            }
+
         }
 
         /// <summary>
@@ -403,7 +420,7 @@ namespace VLB
         [SerializeField] Shader _BeamShaderHD = null;
 #pragma warning restore 0414
 
-        Transform m_CachedFadeOutCamera = null;
+        Camera m_CachedFadeOutCamera = null;
 
         public bool hasRenderPipelineMismatch { get { return (SRPHelper.projectRenderPipeline == RenderPipeline.BuiltIn) != (m_RenderPipeline == RenderPipeline.BuiltIn); } }
 

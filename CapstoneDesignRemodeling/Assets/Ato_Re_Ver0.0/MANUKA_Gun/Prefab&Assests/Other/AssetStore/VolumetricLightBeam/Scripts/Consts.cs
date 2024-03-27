@@ -17,12 +17,25 @@ namespace VLB
             public const string UrlEffectFromProfile = UrlBase + "comp-effect-from-profile" + UrlSuffix;
             public const string UrlConfig = UrlBase + "config" + UrlSuffix;
 
+            public const string AddComponentMenuBase = "VLB/";
+            public const string AddComponentMenuCommon = AddComponentMenuBase + "Common/";
+            public const string AddComponentMenuDustParticles = AddComponentMenuCommon + "Volumetric Dust Particles";
+            public const string AddComponentMenuTriggerZone = AddComponentMenuCommon + "Trigger Zone";
+            public const string AddComponentMenuEffectFlicker = AddComponentMenuCommon + "Effect Flicker";
+            public const string AddComponentMenuEffectPulse = AddComponentMenuCommon + "Effect Pulse";
+            public const string AddComponentMenuEffectFromProfile = AddComponentMenuCommon + "Effect From Profile";
+
             public static class SD
             {
                 public const string UrlBeam = UrlBase + "comp-lightbeam-sd" + UrlSuffix;
                 public const string UrlDynamicOcclusionRaycasting = UrlBase + "comp-dynocclusion-sd-raycasting" + UrlSuffix;
                 public const string UrlDynamicOcclusionDepthBuffer = UrlBase + "comp-dynocclusion-sd-depthbuffer" + UrlSuffix;
                 public const string UrlSkewingHandle = UrlBase + "comp-skewinghandle-sd" + UrlSuffix;
+
+                public const string AddComponentMenuSD = AddComponentMenuBase + "SD/";
+                public const string AddComponentMenuBeam = AddComponentMenuSD + "Volumetric Light Beam SD";
+                public const string AddComponentMenuDynamicOcclusionRaycasting = AddComponentMenuSD + "Dynamic Occlusion (Raycasting)";
+                public const string AddComponentMenuDynamicOcclusionDepthBuffer = AddComponentMenuSD + "Dynamic Occlusion (Depth Buffer)";
             }
 
             public static class HD
@@ -31,6 +44,13 @@ namespace VLB
                 public const string UrlShadow = UrlBase + "comp-shadow-hd" + UrlSuffix;
                 public const string UrlCookie = UrlBase + "comp-cookie-hd" + UrlSuffix;
                 public const string UrlTrackRealtimeChangesOnLight = UrlBase + "comp-trackrealtimechanges-hd" + UrlSuffix;
+
+                public const string AddComponentMenuHD = AddComponentMenuBase + "HD/";
+                public const string AddComponentMenuBeam3D = AddComponentMenuHD + "Volumetric Light Beam HD";
+                public const string AddComponentMenuBeam2D = AddComponentMenuHD + "Volumetric Light Beam HD (2D)";
+                public const string AddComponentMenuShadow = AddComponentMenuHD + "Volumetric Shadow HD";
+                public const string AddComponentMenuCookie = AddComponentMenuHD + "Volumetric Cookie HD";
+                public const string AddComponentMenuTrackRealtimeChangesOnLight = AddComponentMenuHD + "Track Realtime Changes On Light";
             }
         }
 

@@ -6,6 +6,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [RequireComponent(typeof(VolumetricLightBeamAbstractBase))]
     [HelpURL(Consts.Help.UrlDustParticles)]
+    [AddComponentMenu(Consts.Help.AddComponentMenuDustParticles)]
     public class VolumetricDustParticles : MonoBehaviour
     {
         public const string ClassName = "VolumetricDustParticles";
@@ -55,18 +56,18 @@ namespace VLB
         public float spawnMaxDistance = 0.7f;
 
         /// <summary>
-        /// Enable particles culling based on the distance to the Main Camera.
+        /// Enable particles culling based on the distance with the FadeOut Camera identified through the VLB Config's 'fadeOutCameraTag' property.
         /// We highly recommend to enable this feature to keep good runtime performances.
         /// </summary>
         public bool cullingEnabled = Consts.DustParticles.CullingEnabledDefault;
 
         /// <summary>
-        /// If culling is enabled, the particles will not be rendered if they are further than cullingMaxDistance to the Main Camera.
+        /// If culling is enabled, the particles will not be rendered if they are further than cullingMaxDistance to the FadeOut Camera.
         /// </summary>
         public float cullingMaxDistance = Consts.DustParticles.CullingMaxDistanceDefault;
 
         /// <summary>
-        /// Is the particle system currently culled (no visible) because too far from the main camera?
+        /// Is the particle system currently culled (no visible) because too far from the FadeOut Camera?
         /// </summary>
         public bool isCulled { get; private set; }
 
@@ -86,30 +87,6 @@ namespace VLB
         Material m_Material = null;
         Gradient m_GradientCached = new Gradient();
         bool m_RuntimePropertiesDirty = true;
-
-
-        /// <summary>Cached version of Camera.main, for performance reasons</summary>
-        public Camera mainCamera
-        {
-            get
-            {
-                if (!ms_MainCamera)
-                {
-                    ms_MainCamera = Camera.main;
-                    if (!ms_MainCamera && !ms_NoMainCameraLogged)
-                    {
-                        Debug.LogErrorFormat(gameObject, "In order to use '" + VolumetricDustParticles.ClassName + "' culling, you must have a MainCamera defined in your scene.");
-                        ms_NoMainCameraLogged = true;
-                    }
-                }
-
-                return ms_MainCamera;
-            }
-        }
-
-        // Cache the main camera, because accessing Camera.main at each frame is very bad performance-wise
-        static bool ms_NoMainCameraLogged = false;
-        static Camera ms_MainCamera = null;
 
 #if UNITY_EDITOR
         void OnValidate()
@@ -379,16 +356,22 @@ namespace VLB
                 bool isFadeOutEnabled = UtilsBeamProps.GetFadeOutEnabled(m_Master);
                 if ((cullingEnabled || isFadeOutEnabled) && m_Master.hasGeometry)
                 {
-                    if (mainCamera)
+                    if (Config.Instance.fadeOutCameraTransform)
                     {
                         var maxDist = cullingMaxDistance;
-                        if(isFadeOutEnabled) maxDist = Mathf.Min(maxDist, UtilsBeamProps.GetFadeOutEnd(m_Master));
+                        if (isFadeOutEnabled) maxDist = Mathf.Min(maxDist, UtilsBeamProps.GetFadeOutEnd(m_Master));
                         var maxDistSqr = maxDist * maxDist;
-                        var distSqr = m_Master.bounds.SqrDistance(mainCamera.transform.position);
+                        var distSqr = m_Master.bounds.SqrDistance(Config.Instance.fadeOutCameraTransform.position);
                         visible = distSqr <= maxDistSqr;
                     }
                     else
-                        cullingEnabled = false;
+                    {
+                        Debug.LogErrorFormat(gameObject
+                            , "Fail to retrieve the camera with tag '{0}' (specified in VLB Config's 'fadeOutCameraTag') for the {1} Culling feature."
+                            , Config.Instance.fadeOutCameraTag
+                            , VolumetricDustParticles.ClassName
+                            );
+                    }
                 }
 
                 if (m_Particles.gameObject.activeSelf != visible)

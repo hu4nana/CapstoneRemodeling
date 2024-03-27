@@ -14,13 +14,20 @@ public class PlayerController : MonoBehaviour,
     float maxFallSpeed;
 
     Rigidbody rigid;
+    //CapsuleCollider col;
+    BoxCollider col;
     Animator ani;
+    Renderer[] renderers;
+    Color originalColor;
 
-
+    
+    bool isDamaged = false;
     bool isHook = false;
-    Vector3 hookDistance;
+    bool isHookHolder = false;
     Vector3 hookEndPoint;
     float hookTimer = 0.2f;
+    
+
 
     public GameObject Gun;
 
@@ -29,7 +36,11 @@ public class PlayerController : MonoBehaviour,
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        //col = GetComponent<CapsuleCollider>();
+        col=GetComponent<BoxCollider>();
         ani = GetComponent<Animator>();
+        renderers = GetComponentsInChildren<Renderer>();
+        originalColor = renderers[0].material.color;
     }
 
     // Update is called once per frame
@@ -39,16 +50,22 @@ public class PlayerController : MonoBehaviour,
         {
             rigid.velocity = new Vector3(rigid.velocity.x, maxFallSpeed, 0);
         }
-        //if(Input.GetKey(KeyCode.A))
-        //{
-        //    hookDistance = (hookPoint.transform.position - transform.position);
-        //    transform.Translate(hookDistance.normalized * 1.4f);
-        //}
-        Move();
+        if (rigid.velocity.y >= 30)
+        {
+            rigid.velocity = new Vector3(rigid.velocity.x, 30, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ani.SetTrigger("isDamaged");
+        }
         Attack();
         Crouch();
         Jump();
-        //Hook();
+        Hook();
+    }
+    private void FixedUpdate()
+    {
+        Move();
     }
     void Move()
     {
@@ -60,60 +77,87 @@ public class PlayerController : MonoBehaviour,
     }
     void Crouch()
     {
-        GetComponent<IPlayerBasicAction>().Crouch(ani);
+        GetComponent<IPlayerBasicAction>().Crouch(ani,col);
     }
-
     void Jump()
     {
-        GetComponent<IPlayerBasicAction>().Jump(5,rigid, gameObject, ani);
+        GetComponent<IPlayerBasicAction>().Jump(7,rigid, gameObject, ani);
     }
     void Hook()
     {
-        if (hookPoint != null && Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V)&& hookPoint != null)
         {
-            hookDistance = (hookPoint.transform.position - transform.position);
-            hookEndPoint = hookDistance.normalized * 2;
+            hookEndPoint = hookPoint.transform.position - transform.position;
             isHook = true;
-            hookTimer = 0.2f;
+            hookTimer = 0.1f;
         }
         if (isHook)
         {
-            GetComponent<IPlayerSpecialAction>().GrapplingHook(gameObject, hookPoint, rigid, hookEndPoint);
-            //hookTimer -= Time.deltaTime;
-            //if (hookTimer <= 0)
-            //{
-            //    isHook = false;
-            //}
-
-
-            float stoppingDistance = 0.5f;
-            Debug.Log((transform.position-hookEndPoint).magnitude);
-            if ((hookEndPoint-transform.position).magnitude < stoppingDistance)
+            
+            hookTimer -= Time.deltaTime;
+            if(hookPoint.tag=="HookHolder")
             {
-                // 도착 지점에 도달했을 때의 동작
-                Debug.Log("도착 지점에 도달했습니다.");
-
-                // 이동을 멈추기 위해 속도를 0으로 설정
-                isHook = false;
-                rigid.velocity = Vector3.zero;
+                GetComponent<IPlayerSpecialAction>().GrapplingHook(gameObject, rigid, hookPoint, 0.5f);
+                if ((hookPoint.transform.position - transform.position).magnitude < 0.1f)
+                {
+                    rigid.useGravity = false;
+                    transform.position = hookPoint.transform.position;
+                    isHookHolder = true;
+                    ani.SetBool("isGround", true);
+                    rigid.velocity = Vector3.zero;
+                }
+                if (isHookHolder)
+                {
+                    if (Input.GetKeyDown(KeyCode.Z))
+                    {
+                        ani.SetBool("isJump", true);
+                        rigid.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
+                        isHookHolder = false;
+                        isHook = false;
+                        rigid.useGravity = true;
+                    }
+                }
+            }
+            else
+            {
+                GetComponent<IPlayerSpecialAction>().GrapplingHook(gameObject, rigid, hookPoint, hookEndPoint, 0.5f);
+                if (hookTimer <= 0 || hookPoint == null)
+                    isHook = false;
             }
         }
-        else
+    }
+    void HookHolder()
+    {
+        if (Input.GetKeyDown(KeyCode.V) && hookPoint != null)
         {
-            rigid.useGravity = true;
+            hookEndPoint = hookPoint.transform.position - transform.position;
+            isHook = true;
+            hookTimer = 0.1f;
         }
-        
+        if (isHook)
+        {
+            GetComponent<IPlayerSpecialAction>().GrapplingHook(gameObject, rigid, hookPoint, hookEndPoint, 0.5f);
+            hookTimer -= Time.deltaTime;
+            if (hookTimer <= 0)
+            {
+                isHook = false;
+            }
+            if (hookPoint == null)
+            {
+                isHook = false;
+            }
+        }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Hook")
+        if (other.gameObject.tag == "Hook" || other.gameObject.tag == "HookHolder")
         {
             hookPoint = other.gameObject;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Hook")
+        if (other.gameObject.tag == "Hook" || other.gameObject.tag == "HookHolder")
         {
             hookPoint = null;
         }

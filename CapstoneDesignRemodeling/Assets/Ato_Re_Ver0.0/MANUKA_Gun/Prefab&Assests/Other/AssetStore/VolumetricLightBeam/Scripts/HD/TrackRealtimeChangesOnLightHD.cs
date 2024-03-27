@@ -5,6 +5,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Light), typeof(VolumetricLightBeamHD))]
     [HelpURL(Consts.Help.HD.UrlTrackRealtimeChangesOnLight)]
+    [AddComponentMenu(Consts.Help.HD.AddComponentMenuTrackRealtimeChangesOnLight)]
     public class TrackRealtimeChangesOnLightHD : MonoBehaviour
     {
         public const string ClassName = "TrackRealtimeChangesOnLightHD";

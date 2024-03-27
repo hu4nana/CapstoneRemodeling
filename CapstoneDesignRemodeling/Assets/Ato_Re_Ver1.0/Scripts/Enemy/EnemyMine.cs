@@ -10,13 +10,21 @@ public class EnemyMine : MonoBehaviour,
 
     bool isAcive = false;
 
-    float timer = 0.4f;
+    float timer = 1f;
 
+    float boomTimer = 0.75f;
+    int boomCount=1;
     private void Update()
     {
         if (isAcive)
         {
             timer-=Time.deltaTime;
+            boomTimer-=Time.deltaTime;
+            if(boomCount==1&&boomTimer<=0)
+            {
+                GetComponent<IEnemyBasicAction>().InstinateEnemyObject(gameObject, explosion);
+                boomCount = 0;
+            }
             if (timer < 0)
             {
                 Destroy(gameObject);
@@ -27,7 +35,6 @@ public class EnemyMine : MonoBehaviour,
     {
         if (other.gameObject.layer == 10)
         {
-            GetComponent<IEnemyBasicAction>().InstinateEnemyObject(gameObject, explosion);
             isAcive = true;
         }
     }

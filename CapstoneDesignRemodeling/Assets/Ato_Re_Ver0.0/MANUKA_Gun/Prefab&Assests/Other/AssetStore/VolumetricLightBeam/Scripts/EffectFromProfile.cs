@@ -3,6 +3,7 @@ using UnityEngine;
 namespace VLB
 {
     [HelpURL(Consts.Help.UrlEffectFromProfile)]
+    [AddComponentMenu(Consts.Help.AddComponentMenuEffectFromProfile)]
     public class EffectFromProfile : MonoBehaviour
     {
         public const string ClassName = "EffectFromProfile";

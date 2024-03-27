@@ -6,6 +6,7 @@ namespace VLB
     [DisallowMultipleComponent]
     [RequireComponent(typeof(VolumetricLightBeamHD))]
     [HelpURL(Consts.Help.HD.UrlCookie)]
+    [AddComponentMenu(Consts.Help.HD.AddComponentMenuCookie)]
     public class VolumetricCookieHD : MonoBehaviour
     {
         public const string ClassName = "VolumetricCookieHD";

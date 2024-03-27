@@ -9,6 +9,7 @@ namespace VLB
 {
     [ExecuteInEditMode]
     [HelpURL(Consts.Help.SD.UrlDynamicOcclusionRaycasting)]
+    [AddComponentMenu(Consts.Help.SD.AddComponentMenuDynamicOcclusionRaycasting)]
     public class DynamicOcclusionRaycasting : DynamicOcclusionAbstractBase
     {
         public new const string ClassName = "DynamicOcclusionRaycasting";

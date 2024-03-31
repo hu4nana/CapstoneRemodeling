@@ -29,7 +29,7 @@ public class G_Bullet : MonoBehaviour
         //Instantiate(hitEffect, transform);
         if (g_lifeTime<=g_lifeTimer)
         {
-            rigid.velocity = -transform.up * speed;
+            rigid.velocity = transform.forward * speed;
             g_lifeTime += Time.deltaTime;
         }
         else
@@ -39,7 +39,7 @@ public class G_Bullet : MonoBehaviour
             if (count == 0)
             {
                 //Instantiate(hitEffect, transform);
-                //count++;
+                count++;
             }
             else
             {

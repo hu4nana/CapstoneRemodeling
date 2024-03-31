@@ -52,7 +52,7 @@ public class Enemy_Howitzer : MonoBehaviour,
     void CreateMissile()
     {
         GetComponent<IEnemyBasicAction>().InstinateMissile(rigid, gameObject, target, missile,
-                    new Vector3(transform.position.x, transform.position.y + 2f, 0), 5);
+                    new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), 5);
     }
     void OneDirectionMove()
     {

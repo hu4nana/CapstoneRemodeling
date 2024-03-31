@@ -38,10 +38,10 @@ public interface IEnemyBasicAction
         RaycastHit hit;
         if (Physics.Raycast(own.transform.position,
             Vector3.right * (own.transform.rotation.y / Mathf.Abs(own.transform.rotation.y))
-            , out hit, own.transform.localScale.z + own.transform.localScale.z / 3, ~9))
+            , out hit, own.transform.localScale.z + own.transform.localScale.z / 3, ~LayerMask.NameToLayer("EnemyAttack")))
         {
             //Debug.Log(hit.collider.name);
-            if (hit.collider.gameObject.layer == 6)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
                 rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
                 own.transform.rotation = Quaternion.Slerp(own.transform.rotation,

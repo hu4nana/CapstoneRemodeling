@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour,
     IPlayerBasicAction,
     IPlayerSpecialAction
 {
-   [SerializeField]
+    [SerializeField]
     float speed;
     [SerializeField]
     float maxFallSpeed;
@@ -20,18 +20,25 @@ public class PlayerController : MonoBehaviour,
     Renderer[] renderers;
     Color originalColor;
 
-    
+
     bool isDamaged = false;
     bool isHook = false;
     bool isHookHolder = false;
     Vector3 hookEndPoint;
     float hookTimer = 0.2f;
-    
-
+    [SerializeField]
+    int moveType;
 
     public GameObject Gun;
 
     GameObject hookPoint;
+
+
+    public int MoveType
+    {
+        get { return moveType; }
+        set { moveType = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +76,7 @@ public class PlayerController : MonoBehaviour,
     }
     void Move()
     {
-        GetComponent<IPlayerBasicAction>().Move(speed, rigid, gameObject, ani);
+        GetComponent<IPlayerBasicAction>().Move(speed, rigid, gameObject, ani,moveType);
     }
     void Attack()
     {
@@ -93,7 +100,6 @@ public class PlayerController : MonoBehaviour,
         }
         if (isHook)
         {
-            
             hookTimer -= Time.deltaTime;
             if(hookPoint.tag=="HookHolder")
             {
@@ -126,6 +132,7 @@ public class PlayerController : MonoBehaviour,
             }
         }
     }
+
     void HookHolder()
     {
         if (Input.GetKeyDown(KeyCode.V) && hookPoint != null)

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2381026898658092998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hip_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510910417239062356}
   - component: {fileID: 5567645245544794681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rob08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4902597132544296850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7734109553648300509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: heel_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4982176092686975334}
   - component: {fileID: 2520553063758020964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flamethrower_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3483522940036088397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: toe_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5130,7 +5130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004116249248529290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5162,7 +5162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6942299947089357090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5196,7 +5196,7 @@ GameObject:
   - component: {fileID: 1894328722792450051}
   - component: {fileID: 4649580778506423306}
   - component: {fileID: 4054165803163647811}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10033,7 +10033,7 @@ GameObject:
   - component: {fileID: 9092932041012266689}
   - component: {fileID: 3669054567988797902}
   - component: {fileID: 1041383491979224919}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14926,7 +14926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3291620365356268550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoulder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19853,7 +19853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3159506090947415407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bodyRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24718,7 +24718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994537848780033245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: toe_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24749,7 +24749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3530537420783418275}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rob08_Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24781,7 +24781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5185986883431084106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: heel_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24813,7 +24813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7806121187233989907}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24845,7 +24845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217184978376531786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24877,7 +24877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4563841066540696998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: gun_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24909,7 +24909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1950432534924647438}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: gun_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24941,7 +24941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7632197100986585214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hip_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24975,7 +24975,7 @@ GameObject:
   - component: {fileID: 8628642947984269444}
   - component: {fileID: 1441327461409713912}
   - component: {fileID: 2385813174009511392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29801,7 +29801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2049093127595700015}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoulder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29833,7 +29833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1523843247089651854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29865,7 +29865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5141589811624107248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hose_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29896,7 +29896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2418864856255894714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: root_ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30005,7 +30005,7 @@ GameObject:
   - component: {fileID: 4551105003366122049}
   - component: {fileID: 2098680977524804016}
   - component: {fileID: 1027279927385977715}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_FlameTanker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30125,7 +30125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7223783788321706943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hose_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

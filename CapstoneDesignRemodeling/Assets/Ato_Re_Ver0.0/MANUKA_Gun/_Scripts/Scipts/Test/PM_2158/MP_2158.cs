@@ -12,6 +12,8 @@ public class MP_2158 : MonoBehaviour
     public GameObject gunHitEffect;
     public GameObject bullet;
 
+    float yRotation;
+
     AudioSource aud;
     ParticleSystem ps;
     // Start is called before the first frame update
@@ -29,8 +31,7 @@ public class MP_2158 : MonoBehaviour
 
     public void Gun_Shoot_Bullet(Transform a)
     {
-        float yRotation = 0;
-        if(a.rotation.y > 0)
+        if(a.rotation.y > 0 && a.rotation.y<180)
         {
             yRotation = 90;
         }
@@ -38,20 +39,27 @@ public class MP_2158 : MonoBehaviour
         {
             yRotation = -90;
         }
+        //Instantiate(gunFireEffect, gunFireTransform.position,
+        //       Quaternion.Euler(yRotation, 0f, yRotation) * gunFireEffect.transform.rotation);
+        //Instantiate(gunProjEffect, gunFireTransform.position,
+        //    Quaternion.Euler(yRotation, 0f, yRotation) * gunProjEffect.transform.rotation);
+        //Instantiate(bullet, gunFireTransform.position,
+        //    Quaternion.Euler(yRotation, 0f, yRotation));
         Instantiate(gunFireEffect, gunFireTransform.position,
-               Quaternion.Euler(yRotation, 0f, yRotation) * gunFireEffect.transform.rotation);
+               Quaternion.Euler(a.rotation.eulerAngles) * gunFireEffect.transform.rotation);
         Instantiate(gunProjEffect, gunFireTransform.position,
-            Quaternion.Euler(yRotation, 0f, yRotation) * gunProjEffect.transform.rotation);
+            Quaternion.Euler(a.rotation.eulerAngles) * gunProjEffect.transform.rotation);
+        Instantiate(bullet, gunFireTransform.position,
+            Quaternion.Euler(a.rotation.eulerAngles));
+        aud.Play();
+        bullet.GetComponent<Rigidbody>().velocity = transform.right * 10;
 
         //Instantiate(gunHitEffect, gunFireTransform.position,
         //   Quaternion.Euler(yRotation,0f,yRotation)*gunHitEffect.transform.rotation);
 
-        Instantiate(bullet, gunFireTransform.position,
-            Quaternion.Euler(yRotation,0f,yRotation));
-        aud.Play();
-        bullet.GetComponent<Rigidbody>().velocity = transform.right * 10;
 
-        
+
+
     }
     //public void Gun_Shoot_Bullet(Transform parents)
     //{

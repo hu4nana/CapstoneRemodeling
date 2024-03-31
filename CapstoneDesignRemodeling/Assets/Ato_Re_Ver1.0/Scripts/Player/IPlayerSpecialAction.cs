@@ -7,7 +7,6 @@ public interface IPlayerSpecialAction
 {
     public void GrapplingHook(GameObject own, Rigidbody rigid, GameObject target,float time)
     {
-
         own.transform.position = Vector3.MoveTowards(
         own.transform.position, target.transform.position, time);
     }

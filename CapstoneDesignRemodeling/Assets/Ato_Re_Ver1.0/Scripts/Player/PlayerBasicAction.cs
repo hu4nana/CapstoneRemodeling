@@ -6,28 +6,69 @@ using UnityEngine.UIElements;
 
 public interface IPlayerBasicAction
 {
-    public void Move(float moveSpeed, Rigidbody rigid, GameObject own, Animator ani)
+    // moveType == 0 Camera_X_Velocity
+    // moveType == 1 Camera_Z_Velocity
+    // moveType == 2 Camera_-ZVelocity
+    public void Move(float moveSpeed, Rigidbody rigid, GameObject own, Animator ani,int moveType)
     {
         if (Input.GetAxis("Horizontal") != 0)
         {
             float xInput = Input.GetAxis("Horizontal");
             float xDir = xInput;
-            if (ani.GetBool("isCrouch"))
-                rigid.velocity = new Vector3(xDir * moveSpeed / 2, rigid.velocity.y, 0);
-            else
-                rigid.velocity = new Vector3(xDir * moveSpeed, rigid.velocity.y, 0);
-
             ani.SetBool("isRun", true);
-
-            if (xDir != 0)
+            if (moveType == 0)
             {
-                own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
-                    Quaternion.LookRotation(Vector3.right * xDir), Time.deltaTime * 24);
+                rigid.constraints = RigidbodyConstraints.FreezePositionZ |
+                    RigidbodyConstraints.FreezeRotationX |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;
+                if (ani.GetBool("isCrouch"))
+                    rigid.velocity = new Vector3(xDir * moveSpeed / 2, rigid.velocity.y, 0);
+                else
+                    rigid.velocity = new Vector3(xDir * moveSpeed, rigid.velocity.y, 0);
+                if (xDir != 0)
+                {
+                    own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
+                        Quaternion.LookRotation(Vector3.right * xDir), Time.deltaTime * 24);
+                }
             }
+            else if (moveType == 1)
+            {
+                rigid.constraints = RigidbodyConstraints.FreezePositionX |
+                    RigidbodyConstraints.FreezeRotationX |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;
+                if (ani.GetBool("isCrouch"))
+                    rigid.velocity = new Vector3(0, rigid.velocity.y, xDir * moveSpeed / 2);
+                else
+                    rigid.velocity = new Vector3(0, rigid.velocity.y, xDir * moveSpeed);
+                if (xDir != 0)
+                {
+                    own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
+                        Quaternion.LookRotation(Vector3.forward * xDir), Time.deltaTime * 24);
+                }
+            }
+            else if (moveType == 2)
+            {
+                rigid.constraints = RigidbodyConstraints.FreezePositionX |
+                    RigidbodyConstraints.FreezeRotationX |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;
+                if (ani.GetBool("isCrouch"))
+                    rigid.velocity = new Vector3(0, rigid.velocity.y, -xDir * moveSpeed / 2);
+                else
+                    rigid.velocity = new Vector3(0, rigid.velocity.y, -xDir * moveSpeed);
+                if (xDir != 0)
+                {
+                    own.transform.rotation = Quaternion.Slerp(own.transform.rotation,
+                        Quaternion.LookRotation(Vector3.right), Time.deltaTime * 24);
+                }
+            }            
         }
         else
         {
             Vector3 targetVelocity = new Vector3(0, rigid.velocity.y, 0);
+
             rigid.velocity = Vector3.SmoothDamp(rigid.velocity,
                 targetVelocity, ref targetVelocity, 0.012f);
             ani.SetBool("isRun", false);
@@ -109,6 +150,12 @@ public interface IPlayerBasicAction
             ani.SetBool("isCrouch", false);
             col.center = new Vector3(0, 0.07f, 0);
             col.height = 1.3f;
+        }
+    }
+    public void Hovering(Rigidbody rigid, Animator ani)
+    {
+        if (!ani.GetBool("isGround"))
+        {
         }
     }
     public void KnockBack(GameObject own, Animator ani,Renderer[] renderers, UnityEngine.Color originalColor)

@@ -10,6 +10,15 @@ public class DroneController : MonoBehaviour,
     [SerializeField]
     Vector3 offSet;
 
+    public Transform gunFireTransform;
+    public List<GameObject> gunFireEffect;
+    public List<GameObject> gunProjEffect;
+    public List<GameObject> gunHitEffect;
+    public List<GameObject> bullet;
+    float yRotation;
+    int droneMode = 0;
+    AudioSource aud;
+
     Rigidbody playerRigid;
     Animator playerAni;
 
@@ -27,6 +36,7 @@ public class DroneController : MonoBehaviour,
     void Update()
     {
         DroneHovering();
+        Drone_Shoot_Bullet(transform);
     }
     private void FixedUpdate()
     {
@@ -34,8 +44,28 @@ public class DroneController : MonoBehaviour,
     }
     void IdleMove()
     {
-        GetComponent<IDroneBasicAction>().DroneIdleMove(gameObject.transform,player.transform,playerRigid,offSet);
+        GetComponent<IDroneBasicAction>().DroneIdleMove(gameObject.transform,player,playerRigid,offSet);
     }
+    public void Drone_Shoot_Bullet(Transform a)
+    {
+        if (a.rotation.y > 0 && a.rotation.y < 180)
+        {
+            yRotation = 90;
+        }
+        else
+        {
+            yRotation = -90;
+        }
+        Instantiate(gunFireEffect[droneMode], gunFireTransform.position,
+               Quaternion.Euler(a.rotation.eulerAngles) * gunFireEffect[droneMode].transform.rotation);
+        Instantiate(gunProjEffect[droneMode], gunFireTransform.position,
+            Quaternion.Euler(a.rotation.eulerAngles) * gunProjEffect[droneMode].transform.rotation);
+        Instantiate(bullet[droneMode], gunFireTransform.position,
+            Quaternion.Euler(a.rotation.eulerAngles));
+        aud.Play();
+        bullet[droneMode].GetComponent<Rigidbody>().velocity = transform.right * 10;
+    }
+
     void DroneHovering()
     {
         if (!playerAni.GetBool("isGround"))

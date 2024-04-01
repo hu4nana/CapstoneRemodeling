@@ -39,12 +39,6 @@ public class MP_2158 : MonoBehaviour
         {
             yRotation = -90;
         }
-        //Instantiate(gunFireEffect, gunFireTransform.position,
-        //       Quaternion.Euler(yRotation, 0f, yRotation) * gunFireEffect.transform.rotation);
-        //Instantiate(gunProjEffect, gunFireTransform.position,
-        //    Quaternion.Euler(yRotation, 0f, yRotation) * gunProjEffect.transform.rotation);
-        //Instantiate(bullet, gunFireTransform.position,
-        //    Quaternion.Euler(yRotation, 0f, yRotation));
         Instantiate(gunFireEffect, gunFireTransform.position,
                Quaternion.Euler(a.rotation.eulerAngles) * gunFireEffect.transform.rotation);
         Instantiate(gunProjEffect, gunFireTransform.position,
@@ -53,13 +47,6 @@ public class MP_2158 : MonoBehaviour
             Quaternion.Euler(a.rotation.eulerAngles));
         aud.Play();
         bullet.GetComponent<Rigidbody>().velocity = transform.right * 10;
-
-        //Instantiate(gunHitEffect, gunFireTransform.position,
-        //   Quaternion.Euler(yRotation,0f,yRotation)*gunHitEffect.transform.rotation);
-
-
-
-
     }
     //public void Gun_Shoot_Bullet(Transform parents)
     //{

@@ -5,6 +5,14 @@ using UnityEngine;
 public class Chaser : MonoBehaviour,
     IEnemyBasicAction
 {
+    private Monster_State_Manage _monster_State_Manage;
+
+    public Monster_State_Manage monster_State_Manage
+    {
+        get { return _monster_State_Manage; }
+        set { _monster_State_Manage = value; }
+    }
+
     GameObject target = null;
     Rigidbody rigid;
     Animator ani;

@@ -9,6 +9,10 @@ using VLB;
 
 public interface IEnemyBasicAction
 {
+    public Monster_State_Manage monster_State_Manage { get; set; }
+
+
+
     /*========================== 이동과 관련된 함수===============================*/
     // target설정
     public GameObject DetectTarget(GameObject own, GameObject target, float length)
@@ -145,9 +149,9 @@ public interface IEnemyBasicAction
 
     // 전방주시, 플레이어감지시 최대거리까지 전진, 최대거리에서 멈춤
     // 플레이어가 시야에서 벗어났을 때 제자리로 뒷걸음질치며 복귀
-    public void BeOnGuard(Rigidbody rigid,GameObject own, GameObject target, Vector3 startPos, float maxDistance,float speed)
+    public void BeOnGuard(Rigidbody rigid, GameObject own, GameObject target, Vector3 startPos, float maxDistance, float speed)
     {
-        if (target!=null)
+        if (target != null)
         {
             if (((startPos.x - maxDistance) <= own.transform.position.x &&
                 own.transform.position.x <= (startPos.x + maxDistance)))
@@ -155,11 +159,11 @@ public interface IEnemyBasicAction
                 rigid.velocity = own.transform.forward * speed;
             }
         }
-        if(target==null)
+        if (target == null)
         {
-            if(own.transform.position.x!=startPos.x)
+            if (own.transform.position.x != startPos.x)
             {
-                if(own.transform.position.x > startPos.x)
+                if (own.transform.position.x > startPos.x)
                 {
                     rigid.velocity = own.transform.forward * speed;
                 }
@@ -167,7 +171,7 @@ public interface IEnemyBasicAction
                 {
                     rigid.velocity = own.transform.forward * -speed;
                 }
-                if (-0.1f< startPos.x - own.transform.position.x
+                if (-0.1f < startPos.x - own.transform.position.x
                     && startPos.x - own.transform.position.x < 0.1f)
                 {
                     rigid.velocity = Vector3.zero;
@@ -179,21 +183,21 @@ public interface IEnemyBasicAction
 
 
     // 인식된 Target의 방향으로 일정시간동안 돌징
-    public void Charge(GameObject target,GameObject own, Rigidbody rigid,float endTimer)
+    public void Charge(GameObject target, GameObject own, Rigidbody rigid, float endTimer)
     {
         int minSpeed = 1;
         int maxSpeed = 15;
         float accelation = 1.1f;
-        if(target!=null)
+        if (target != null)
         {
             rigid.velocity += new Vector3(minSpeed * accelation, rigid.velocity.y, 0);
         }
         else
         {
-            endTimer-=Time.deltaTime;
+            endTimer -= Time.deltaTime;
             if (endTimer <= 0)
             {
-                rigid.velocity=new Vector3(0,rigid.velocity.y, 0);
+                rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
             }
         }
         if (rigid.velocity.x >= maxSpeed)
@@ -206,7 +210,7 @@ public interface IEnemyBasicAction
 
 
     // 해당 위치에서 obj를 생성하는 함수
-    public void InstinateEnemyObject(GameObject insPoint,GameObject obj)
+    public void InstinateEnemyObject(GameObject insPoint, GameObject obj)
     {
         Object.Instantiate(obj, insPoint.transform.position, Quaternion.identity);
     }
@@ -236,9 +240,9 @@ public interface IEnemyBasicAction
     }
 
     // 투사체 생성 및 속도 설정
-    public void InstinateMissile(Rigidbody rigid, GameObject own, GameObject target, GameObject missile,Vector3 inPos,float speed)
+    public void InstinateMissile(Rigidbody rigid, GameObject own, GameObject target, GameObject missile, Vector3 inPos, float speed)
     {
-        GameObject projectile = Object.Instantiate(missile,inPos,own.transform.rotation);
+        GameObject projectile = Object.Instantiate(missile, inPos, own.transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = own.transform.forward * speed;
     }
 
@@ -249,7 +253,7 @@ public interface IEnemyBasicAction
     // isMove를 true,false시키는 함수
     public void SetAni_Move(Rigidbody rigid, GameObject own, Animator ani)
     {
-        if(rigid.velocity.x != 0)
+        if (rigid.velocity.x != 0)
         {
             ani.SetBool("isMove", true);
         }

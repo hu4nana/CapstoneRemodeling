@@ -84,7 +84,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f485e8be97759f4c891fad4f430b0f7, type: 2}
+  - {fileID: 2100000, guid: c5c17d7d66171ff4bae7b1a169b2ee74, type: 2}
   - {fileID: 2100000, guid: 9491a4345dc310747a877b8d9f4a02a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -333,7 +333,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -29930,6 +29930,7 @@ GameObject:
   - component: {fileID: 2988084135371821436}
   - component: {fileID: 1225194595772298738}
   - component: {fileID: 7516692140143718738}
+  - component: {fileID: 5293011114661961576}
   m_Layer: 9
   m_Name: Flamethrower_L
   m_TagString: Untagged
@@ -29992,6 +29993,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 4}
   m_Center: {x: 0.75, y: 0, z: 1.5}
+--- !u!114 &5293011114661961576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624892552522675131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4fd5b2884c7784db38ce258f0c312c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _isMonster: 0
+  _isAttackObject: 1
+  _M_Type: 0
+  _A_Type: 0
 --- !u!1 &8630278925728057006
 GameObject:
   m_ObjectHideFlags: 0
@@ -30004,6 +30022,7 @@ GameObject:
   - component: {fileID: 5220793018398520960}
   - component: {fileID: 4551105003366122049}
   - component: {fileID: 2098680977524804016}
+  - component: {fileID: 6947374641020200116}
   - component: {fileID: 1027279927385977715}
   m_Layer: 8
   m_Name: Enemy_FlameTanker
@@ -30027,6 +30046,7 @@ Transform:
   m_Children:
   - {fileID: 1510910417239062356}
   - {fileID: 3530537420783418275}
+  - {fileID: 5357357693834390007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!95 &5220793018398520960
@@ -30098,6 +30118,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.6, z: 1}
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &6947374641020200116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630278925728057006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8341dc8e99ae5cc4abcf978851e1a976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original_Color: {r: 0, g: 0, b: 0, a: 0}
+  _M_M_Type: 0
+  GroundType_Vfx: {fileID: 149127782051511265}
+  FlyType_Vfx: {fileID: 0}
+  _max_monsterHp: 100
+  _monsterHp: 100
+  _damage: 1
+  _isMonster: 1
+  _isAlive: 1
+  _isAttackObject: 0
+  _M_Type: 0
+  _A_Type: 0
 --- !u!114 &1027279927385977715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30147,3 +30191,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3159506090947415407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4829963185785866603
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5623959390485569940}
+    m_Modifications:
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181880061601867688, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_Name
+      value: PS_VFX_Explosion_Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690137273212695178, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7b012af0027acc4891dd16fbab6415e, type: 3}
+--- !u!198 &149127782051511265 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4690137273212695178, guid: c7b012af0027acc4891dd16fbab6415e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4829963185785866603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5357357693834390007 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4829963185785866603}
+  m_PrefabAsset: {fileID: 0}

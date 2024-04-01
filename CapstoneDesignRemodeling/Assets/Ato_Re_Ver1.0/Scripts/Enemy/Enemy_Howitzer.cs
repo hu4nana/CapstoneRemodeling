@@ -5,6 +5,15 @@ using UnityEngine;
 public class Enemy_Howitzer : MonoBehaviour,
     IEnemyBasicAction
 {
+    private Monster_State_Manage _monster_State_Manage;
+
+    public Monster_State_Manage monster_State_Manage
+    {
+        get { return _monster_State_Manage; }
+        set { _monster_State_Manage = value; }
+    }
+
+
     [SerializeField]
     GameObject missile;
 
@@ -52,7 +61,7 @@ public class Enemy_Howitzer : MonoBehaviour,
     void CreateMissile()
     {
         GetComponent<IEnemyBasicAction>().InstinateMissile(rigid, gameObject, target, missile,
-                    new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), 5);
+                    new Vector3(transform.position.x, transform.position.y + 2f, 0), 5);
     }
     void OneDirectionMove()
     {

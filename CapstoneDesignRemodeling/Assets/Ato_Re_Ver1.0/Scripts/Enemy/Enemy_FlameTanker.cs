@@ -5,6 +5,14 @@ using UnityEngine;
 public class Enemy_FlameTanker : MonoBehaviour,
     IEnemyBasicAction
 {
+    private Monster_State_Manage _monster_State_Manage;
+
+    public Monster_State_Manage monster_State_Manage 
+    {
+        get { return _monster_State_Manage; }
+        set { _monster_State_Manage = value; }
+    }
+
     [SerializeField]
     float moveSpeed;
     [SerializeField]
@@ -30,15 +38,29 @@ public class Enemy_FlameTanker : MonoBehaviour,
         rigid=GetComponent<Rigidbody>();
         ani=GetComponent<Animator>();
         startPos = transform.position;
+        monster_State_Manage = GetComponentInChildren<Monster_State_Manage>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        target = GetComponent<IEnemyBasicAction>().DetectTarget(gameObject, target, detectDistance);
-        BeOnGuard();
         FlameAttack();
-        ani.SetInteger("velocityX",(int)rigid.velocity.x*direction);
+
+
+        if (monster_State_Manage.IsAlive)
+        {
+            target = GetComponent<IEnemyBasicAction>().DetectTarget(gameObject, target, detectDistance);
+            BeOnGuard();
+            ani.SetInteger("velocityX", (int)rigid.velocity.x * direction);
+        }
+        else
+        {
+            target = null;
+        }
+        //target = GetComponent<IEnemyBasicAction>().DetectTarget(gameObject, target, detectDistance);
+        //BeOnGuard();
+        //FlameAttack();
+        //ani.SetInteger("velocityX",(int)rigid.velocity.x*direction);
     }
     void BeOnGuard()
     {

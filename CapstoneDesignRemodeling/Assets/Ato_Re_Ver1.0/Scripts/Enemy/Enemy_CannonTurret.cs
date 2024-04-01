@@ -5,6 +5,14 @@ using UnityEngine;
 public class Enemy_CannonTurret : MonoBehaviour,
     IEnemyBasicAction
 {
+    private Monster_State_Manage _monster_State_Manage;
+
+    public Monster_State_Manage monster_State_Manage
+    {
+        get { return _monster_State_Manage; }
+        set { _monster_State_Manage = value; }
+    }
+
     [SerializeField]
     GameObject missile;
     [SerializeField]

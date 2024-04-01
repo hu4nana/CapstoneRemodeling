@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Stage1_Event_Case2 : MonoBehaviour,
-    IEnemyBasicAction
+public class Stage1_Event_Case2 : MonoBehaviour
 {
     [SerializeField]
     GameObject eventTrigger;

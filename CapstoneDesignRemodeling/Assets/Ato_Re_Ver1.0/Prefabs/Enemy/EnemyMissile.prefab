@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9218975574774904209}
   - component: {fileID: 6039736527880583011}
   - component: {fileID: -2880432737569040922}
+  - component: {fileID: -7165431692667945759}
   m_Layer: 9
   m_Name: EnemyMissile
   m_TagString: Untagged
@@ -149,3 +150,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 4
+--- !u!114 &-7165431692667945759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498002054068222301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4fd5b2884c7784db38ce258f0c312c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _isMonster: 0
+  _isAttackObject: 1
+  _M_Type: 0
+  _A_Type: 0

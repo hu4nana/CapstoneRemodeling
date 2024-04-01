@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 2021872543347707594}
   - component: {fileID: 7601186646406286326}
   - component: {fileID: 8082888889827561143}
+  - component: {fileID: -8704020576466890366}
   m_Layer: 8
   m_Name: Enemy_Chaser
   m_TagString: Untagged
@@ -573,6 +574,7 @@ Transform:
   - {fileID: 4121827895899911941}
   - {fileID: 7351218776464776252}
   - {fileID: 125518594879629961}
+  - {fileID: 6352005287211581396}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!95 &4250101068814968132
@@ -656,6 +658,30 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8704020576466890366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771219781918881791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8341dc8e99ae5cc4abcf978851e1a976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original_Color: {r: 0, g: 0, b: 0, a: 0}
+  _M_M_Type: 0
+  GroundType_Vfx: {fileID: 1183951624796646850}
+  FlyType_Vfx: {fileID: 0}
+  _max_monsterHp: 0
+  _monsterHp: 0
+  _damage: 1
+  _isMonster: 0
+  _isAlive: 0
+  _isAttackObject: 0
+  _M_Type: 0
+  _A_Type: 0
 --- !u!1 &4993846833205801100
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +924,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 257096c765045444094e8c2b8bc57c7b, type: 2}
+  - {fileID: 2100000, guid: 7c4a33691e391eb48a142cfa583e6bd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1050,3 +1076,83 @@ Transform:
   - {fileID: 2963852035235417231}
   m_Father: {fileID: 7577298662784976573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5870594650022698824
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4515989821915154374}
+    m_Modifications:
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181880061601867688, guid: c7b012af0027acc4891dd16fbab6415e,
+        type: 3}
+      propertyPath: m_Name
+      value: PS_VFX_Explosion_Floor
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7b012af0027acc4891dd16fbab6415e, type: 3}
+--- !u!198 &1183951624796646850 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4690137273212695178, guid: c7b012af0027acc4891dd16fbab6415e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5870594650022698824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6352005287211581396 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 675066731006222492, guid: c7b012af0027acc4891dd16fbab6415e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5870594650022698824}
+  m_PrefabAsset: {fileID: 0}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6803092442236574555}
   - component: {fileID: 5603566715820038057}
   - component: {fileID: 6432213893843252406}
+  - component: {fileID: -3405999474222877199}
   m_Layer: 8
   m_Name: EnemyMine
   m_TagString: Untagged
@@ -170,3 +171,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 2181880061601867688, guid: c7b012af0027acc4891dd16fbab6415e,
     type: 3}
+--- !u!114 &-3405999474222877199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6446601335027217753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4fd5b2884c7784db38ce258f0c312c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _isMonster: 0
+  _isAttackObject: 1
+  _M_Type: 0
+  _A_Type: 0

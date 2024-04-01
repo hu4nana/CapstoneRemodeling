@@ -5,7 +5,13 @@ using UnityEngine;
 public class Enemy_MineCreater : MonoBehaviour,
     IEnemyBasicAction
 {
+    private Monster_State_Manage _monster_State_Manage;
 
+    public Monster_State_Manage monster_State_Manage
+    {
+        get { return _monster_State_Manage; }
+        set { _monster_State_Manage = value; }
+    }
 
     [SerializeField]
     float moveTimer;
